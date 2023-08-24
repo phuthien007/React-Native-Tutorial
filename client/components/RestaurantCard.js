@@ -2,10 +2,14 @@ import { View, Text, TouchableWithoutFeedback, Image } from "react-native";
 import React from "react";
 import * as Icon from "react-native-feather";
 import { themeColors } from "../theme";
+import { useNavigation } from "@react-navigation/native";
 
 const RestaurantCard = ({ item }) => {
+  const navigation = useNavigation();
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback
+      onPress={() => navigation.navigate("Restaurant", { ...item })}
+    >
       <View
         className="mr-6 bg-white rounded-3xl shadow-lg"
         style={{
@@ -31,7 +35,9 @@ const RestaurantCard = ({ item }) => {
           </View>
           <View className="flex-row items-center space-x-1">
             <Icon.MapPin height="20" width="20" stroke="gray" />
-            <Text className="text-gray-700 text-xs">Nearby {item.address}</Text>
+            <Text className="text-gray-700 text-xs">
+              Nearby . {item.address}
+            </Text>
           </View>
         </View>
       </View>
